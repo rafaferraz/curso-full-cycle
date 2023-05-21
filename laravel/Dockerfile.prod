@@ -1,0 +1,30 @@
+FROM php:7.4-cli AS builder
+
+WORKDIR /var/www
+
+RUN apt-get update && \
+    apt-get install libzip-dev -y && \
+    docker-php-ext-install zip
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+    php composer-setup.php && \
+    php -r "unlink('composer-setup.php');"
+
+RUN php composer.phar create-project --prefer-dist laravel/laravel:8.4 laravel
+
+FROM php:7.4-fpm-alpine
+WORKDIR /var/www
+
+# Apagando a pasta html
+RUN rm -rf /var/www/html
+
+# Copiando a pasta laravel do workdir do primeiro estágio, para o workdir acima
+COPY --from=builder /var/www/laravel .
+
+# Link simbólico
+RUN ln -s public html
+
+# Dando permissão para o grupo ser dono do conteúdo do diretório, permitindo editar, etc
+RUN chown -R www-data:www-data /var/www
+EXPOSE 9000
+CMD ["php-fpm"]
