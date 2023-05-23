@@ -13,7 +13,7 @@ Repositório destinado às atividades do curso fornecido pela [Full Cycle](https
 ## 🎓 Certificados
 
 <div align="center">
-    <a href="https://fullcycle.com.br/certificado/fa2bec4f-f9d7-40f7-a6ad-2c06429e8c0a"><img src="https://img.shields.io/badge/Docker-3a8cb4?style=plastic"></a>
+    <a href="https://fullcycle.com.br/certificado/fa2bec4f-f9d7-40f7-a6ad-2c06429e8c0a"><img src="https://img.shields.io/badge/Docker-3a8cb4?logo=docker&style=plastic&logoColor=white"></a>
 </div>
 
 ## 💡 Desafios realizados
